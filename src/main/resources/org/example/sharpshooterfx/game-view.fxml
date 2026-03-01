@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.shape.Polygon?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.sharpshooterfx.HelloController"
+            prefWidth="850" prefHeight="520">
+
+    <!-- Центр: игровая область -->
+    <center>
+        <Pane fx:id="gameField"
+              prefWidth="650" prefHeight="460"
+              style="-fx-background-color: #d0e8f0;">
+
+            <!-- Жёлтая зона игрока слева -->
+            <Rectangle fx:id="playerZone"
+                       x="0" y="0"
+                       width="60" height="460"
+                       fill="yellow"
+                       stroke="gray" strokeWidth="1"/>
+            <Polygon points="15,210, 50,230, 15,250"
+                     fill="#1E90FF"
+                     stroke="#00008B"
+                     strokeWidth="2"/>
+
+        </Pane>
+    </center>
+
+    <!-- Справа: счёт и выстрелы -->
+    <right>
+        <VBox prefWidth="180" prefHeight="460"
+              spacing="20"
+              style="-fx-padding: 20; -fx-background-color: #f0f0f0;">
+            <Label text="Счёт игрока:" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Label fx:id="scoreLabel" text="0" style="-fx-font-size: 24;"/>
+            <Label text="Выстрелов:" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+            <Label fx:id="shotsLabel" text="0" style="-fx-font-size: 24;"/>
+        </VBox>
+    </right>
+
+    <!-- Снизу: кнопки управления -->
+    <bottom>
+        <HBox spacing="10"
+              style="-fx-padding: 10; -fx-background-color: #e0e0e0;">
+            <Button fx:id="startButton" text="Начало игры"
+                    onAction="#onStartGame"/>
+            <Button fx:id="stopButton"  text="Остановить игру"
+                    onAction="#onStopGame"/>
+            <Button fx:id="pauseButton" text="Пауза"
+                    onAction="#onPauseGame"/>
+            <Button fx:id="shootButton" text="Выстрел"
+                    onAction="#onShoot"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>
