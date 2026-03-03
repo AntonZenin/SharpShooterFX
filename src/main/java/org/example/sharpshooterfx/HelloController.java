@@ -53,8 +53,14 @@ public class HelloController {
     @FXML
     public void onPauseGame() {
         if (engine == null || !engine.isRunning()) return;
-        engine.pause();
-        pauseButton.setText(engine.isPaused() ? "Продолжить" : "Пауза");
+
+        if (engine.isPaused()) {
+            engine.resume();              // будим поток
+            pauseButton.setText("Пауза");
+        } else {
+            engine.pause();               // усыпляем поток
+            pauseButton.setText("Продолжить");
+        }
     }
 
     @FXML

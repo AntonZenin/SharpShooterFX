@@ -8,7 +8,7 @@ public class Arrow {
     private boolean active; // летит ли стрела сейчас
 
     public Arrow() {
-        this.speed = 15;
+        this.speed = 7;
         this.active = false;
     }
 
