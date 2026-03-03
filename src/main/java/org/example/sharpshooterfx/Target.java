@@ -1,6 +1,6 @@
 package org.example.sharpshooterfx;
 
-// Класс мишени — хранит её позицию и скорость движения
+// Класс мишени
 public class Target {
     private double x;      // позиция по горизонтали
     private double y;      // позиция по вертикали
@@ -8,7 +8,7 @@ public class Target {
     private double radius; // размер мишени
     private boolean active; // видима ли мишень
 
-    // Конструктор — как в C++, называется так же как класс
+    // Конструктор
     public Target(double x, double y, double speed, double radius) {
         this.x = x;
         this.y = y;
@@ -17,7 +17,7 @@ public class Target {
         this.active = true;
     }
 
-    // Метод next() — пересчитывает позицию мишени (совет преподавателя!)
+    // Метод next() — пересчитывает позицию мишени
     public void next(double fieldHeight) {
         if (!active) return;
         y += speed;
@@ -27,7 +27,7 @@ public class Target {
         }
     }
 
-    // Геттеры — в Java принято получать поля через методы
+    // Геттеры
     public double getX() { return x; }
     public double getY() { return y; }
     public double getRadius() { return radius; }

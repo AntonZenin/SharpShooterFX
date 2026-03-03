@@ -8,7 +8,7 @@ import javafx.scene.shape.Polygon;
 
 public class GameEngine implements Runnable {
 
-    // Игровое поле (Pane из FXML)
+    // Игровое поле
     private final Pane gameField;
 
     // Мишени
@@ -24,7 +24,7 @@ public class GameEngine implements Runnable {
     private Polygon arrowShape;
 
     // Состояние игры
-    private volatile boolean running = false;  // volatile — видно из разных потоков
+    private volatile boolean running = false;
     private volatile boolean paused  = false;
 
     // Размеры поля
@@ -43,10 +43,10 @@ public class GameEngine implements Runnable {
         this.gameField      = gameField;
         this.scoreCallback  = scoreCallback;
 
-        // Ближняя мишень: стартует в середине, скорость 2, радиус 25
+        // Ближняя мишень
         nearTarget = new Target(fieldWidth * 0.6, fieldHeight / 2, 7, 25);
 
-        // Дальняя мишень: скорость в 2 раза выше, радиус в 2 раза меньше
+        // Дальняя мишень
         farTarget  = new Target(fieldWidth * 0.85, fieldHeight / 2, 10, 12);
 
         arrow = new Arrow();
@@ -87,7 +87,7 @@ public class GameEngine implements Runnable {
 
         while (running) {
             if (!paused) {
-                // Пересчитываем позиции (метод next — совет преподавателя!)
+                // Пересчитываем позиции (метод next)
                 nearTarget.next(fieldHeight);
                 farTarget.next(fieldHeight);
                 arrow.next(fieldWidth);
@@ -99,7 +99,7 @@ public class GameEngine implements Runnable {
                 Platform.runLater(this::updateVisuals);
             }
 
-            // Задержка — скорость игрового цикла (50мс = ~20 кадров/сек)
+            // Задержка — скорость игрового цикла
             try {
                 Thread.sleep(40);
             } catch (InterruptedException e) {
@@ -130,7 +130,7 @@ public class GameEngine implements Runnable {
     private void checkHit() {
         if (!arrow.isActive()) return;
 
-        // Расстояние от стрелы до центра мишени (теорема Пифагора — как в C++)
+        // Расстояние от стрелы до центра мишени
         double dNear = Math.sqrt(
                 Math.pow(arrow.getX() - nearTarget.getX(), 2) +
                         Math.pow(arrow.getY() - nearTarget.getY(), 2)
